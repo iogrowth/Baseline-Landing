@@ -14,12 +14,12 @@
 // fbq('track', 'PageView');
 
 // ----- GA4 (replace G-YOUR_ID) -----
-// window.dataLayer = window.dataLayer || [];
-// function gtag(){dataLayer.push(arguments);}
-// gtag('js', new Date());
-// gtag('config', 'G-YOUR_ID');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MLJNQT488S');
 // NOTE: also add this to <head>:
-// <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_ID"></script>
+// <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLJNQT488S"></script>
 
 
 // ----- UTM PARSING -----
