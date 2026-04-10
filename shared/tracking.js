@@ -37,8 +37,8 @@ function getUtmParams() {
 
 // ----- SUPABASE WAITLIST SUBMISSION -----
 // Replace YOUR_PROJECT and YOUR_ANON_KEY before going live.
-var SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
-var SUPABASE_KEY = 'YOUR_ANON_KEY';
+var SUPABASE_URL = 'https://ttdflvmphpbuvfeeuwzo.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0ZGZsdm1waHBidXZmZWV1d3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MzA3MTQsImV4cCI6MjA5MTQwNjcxNH0.b7Te8Y9ni7iuI5ACRTuhWN_8xPd83HbYfs-Ahsla9lw';
 
 function submitWaitlist(email, protocol) {
   var utms = getUtmParams();
@@ -54,17 +54,16 @@ function submitWaitlist(email, protocol) {
     utm_term: utms.utm_term
   };
 
-  // Uncomment when Supabase is ready:
-  // return fetch(SUPABASE_URL + '/rest/v1/waitlist', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'apikey': SUPABASE_KEY,
-  //     'Authorization': 'Bearer ' + SUPABASE_KEY,
-  //     'Prefer': 'return=minimal'
-  //   },
-  //   body: JSON.stringify(payload)
-  // });
+  return fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  });
 
   console.log('Waitlist payload:', payload);
   return Promise.resolve();
