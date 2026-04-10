@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baseline — Recover Protocol</title>
+<meta name="description" content="Physician-prescribed peptide therapy for tissue repair and recovery. BPC-157 + TB-500. Full compound disclosure.">
+
+<!-- Open Graph for Meta ads -->
+<meta property="og:title" content="Baseline — Recover Protocol">
+<meta property="og:description" content="Your body used to bounce back. Physician-prescribed peptide therapy for joints, tendons, and tissue repair.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://backtobaseline.health/recover">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+<script src="/shared/tracking.js"></script>
+<!-- PASTE YOUR META PIXEL + GA4 TAGS HERE (see shared/tracking.js) -->
+
+
+<style>
+:root {
+  --charcoal: #2A2825;
+  --warm-white: #F5F2ED;
+  --mid-warm: #E8E4DD;
+  --text-secondary: rgba(42,40,37,0.65);
+  --text-tertiary: rgba(42,40,37,0.45);
+  --border: rgba(42,40,37,0.12);
+  --recover: #2EB8A6;
+  --recover-soft: rgba(46,184,166,0.12);
+  --recover-dim: rgba(46,184,166,0.4);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Satoshi', -apple-system, sans-serif;
+  background: var(--warm-white);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- NAV ---- */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(245,242,237,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500; font-size: 13px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.nav-protocol {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-protocol .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--recover);
+}
+
+/* ---- BRAND BANNER ---- */
+.brand-banner {
+  margin-top: 56px;
+  background: var(--charcoal);
+  padding: 64px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.brand-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 50%, rgba(46,184,166,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(47,125,168,0.03) 0%, transparent 50%);
+}
+.brand-banner-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+}
+.brand-banner .tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: rgba(245,242,237,0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.brand-banner .brand-name {
+  font-size: clamp(56px, 10vw, 100px);
+  font-weight: 900;
+  color: var(--warm-white);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.brand-banner .brand-dna {
+  font-size: 17px;
+  color: rgba(245,242,237,0.55);
+  line-height: 1.6;
+  max-width: 460px;
+  margin-top: 16px;
+}
+.brand-banner .accent-bar {
+  width: 48px; height: 3px;
+  background: var(--recover);
+  border-radius: 2px;
+  margin-top: 24px;
+}
+
+/* ---- HERO ---- */
+.hero {
+  min-height: auto;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 72px 32px 80px;
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; animation: fadeUp 0.6s 0.2s ease forwards;
+}
+.hero-label .bar {
+  width: 32px; height: 2px; background: var(--recover); border-radius: 1px;
+}
+.hero-headline {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.6s 0.35s ease forwards;
+}
+.hero-headline em {
+  font-style: normal;
+  color: var(--recover);
+}
+.hero-sub {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.6s 0.5s ease forwards;
+}
+
+/* ---- EMAIL FORM ---- */
+.form-wrap {
+  opacity: 0; animation: fadeUp 0.6s 0.65s ease forwards;
+}
+.email-form {
+  display: flex; gap: 10px;
+  max-width: 480px;
+}
+.email-input {
+  flex: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-input::placeholder { color: var(--text-tertiary); }
+.email-input:focus { border-color: var(--recover); }
+.submit-btn {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px; font-weight: 700;
+  padding: 16px 28px;
+  background: var(--charcoal);
+  color: var(--warm-white);
+  border: none; border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+.submit-btn:hover { background: #1a1815; transform: translateY(-1px); }
+.submit-btn:active { transform: translateY(0); }
+.form-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* Success state */
+.form-success {
+  display: none;
+  padding: 20px 24px;
+  background: var(--recover-soft);
+  border: 1px solid rgba(46,184,166,0.25);
+  border-radius: 8px;
+  max-width: 480px;
+}
+.form-success h4 {
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+}
+.form-success p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--text-secondary);
+}
+.form-wrap.submitted .email-form { display: none; }
+.form-wrap.submitted .form-note { display: none; }
+.form-wrap.submitted .form-success { display: block; }
+
+/* ---- SPEC STRIP ---- */
+.spec-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 32px;
+  background-image: radial-gradient(rgba(42,40,37,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.spec-inner {
+  max-width: 780px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.spec-value {
+  font-size: 24px; font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.spec-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+}
+
+/* ---- PROTOCOL DETAIL ---- */
+.detail {
+  padding: 80px 32px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.detail h2 {
+  font-size: 32px; font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.detail p {
+  font-size: 16px; line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+.detail p + p { margin-top: 16px; }
+
+.mechanism-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+.mech-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+.mech-card .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--recover);
+  font-weight: 500; letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.mech-card h4 {
+  font-size: 17px; font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.mech-card p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ---- HOW IT WORKS ---- */
+.how {
+  padding: 80px 32px;
+  max-width: 780px; margin: 0 auto;
+}
+.how h2 {
+  font-size: 32px; font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.step {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.step .step-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 32px; font-weight: 500;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step h4 {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.step p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ---- TRANSPARENCY BLOCK ---- */
+.transparency {
+  margin: 0 32px 80px;
+  max-width: 780px;
+  margin-left: auto; margin-right: auto;
+  background: var(--charcoal);
+  border-radius: 16px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.transparency::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 40%, rgba(46,184,166,0.06) 0%, transparent 60%);
+}
+.transparency * { position: relative; }
+.transparency h2 {
+  font-size: 28px; font-weight: 900;
+  color: var(--warm-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.transparency p {
+  font-size: 16px; line-height: 1.7;
+  color: rgba(245,242,237,0.7);
+  max-width: 560px;
+}
+.transparency ul {
+  list-style: none; padding: 0;
+  margin-top: 24px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.transparency li {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: rgba(245,242,237,0.55);
+  padding-left: 20px;
+  position: relative;
+}
+.transparency li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--recover-dim);
+}
+
+/* ---- BOTTOM CTA ---- */
+.bottom-cta {
+  padding: 64px 32px 80px;
+  max-width: 780px; margin: 0 auto;
+  text-align: center;
+}
+.bottom-cta h2 {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.bottom-cta p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0 auto 32px;
+  max-width: 440px;
+}
+.bottom-cta .email-form {
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px;
+  text-align: center;
+}
+.footer p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  max-width: none;
+}
+.footer .disclaimer {
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto; margin-right: auto;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 640px) {
+  .hero { padding: 56px 24px 60px; }
+  .spec-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .mechanism-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .email-form { flex-direction: column; }
+  .submit-btn { text-align: center; }
+  .detail, .how, .bottom-cta { padding-left: 24px; padding-right: 24px; }
+  .transparency { margin-left: 16px; margin-right: 16px; padding: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-logo">Baseline</div>
+  <div class="nav-protocol"><span class="dot"></span> Recover Protocol</div>
+</div>
+
+<!-- BRAND BANNER -->
+<div class="brand-banner">
+  <div class="brand-banner-inner">
+    <div class="tagline">Back to Yourself</div>
+    <div class="brand-name">Baseline</div>
+    <div class="brand-dna">Physician-prescribed peptide therapy. Full compound disclosure. No proprietary blends. No hidden ingredients.</div>
+    <div class="accent-bar"></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label"><span class="bar"></span> Tissue Repair + Recovery</div>
+  <h1 class="hero-headline">You didn't used to think about recovery. <em>Now it's all you think about.</em></h1>
+  <p class="hero-sub">BPC-157 + TB-500. Physician-prescribed peptide therapy for joints, tendons, and tissue repair — with full compound disclosure and published dosing.</p>
+  <div class="form-wrap" id="heroForm">
+    <form class="email-form" onsubmit="handleSubmit(event, 'heroForm', 'recover')">
+      <input type="email" class="email-input" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="submit-btn">Get Early Access</button>
+    </form>
+    <p class="form-note">Join the waitlist. No spam. We'll email you once — when we launch.</p>
+    <div class="form-success">
+      <h4>You're on the list.</h4>
+      <p>We'll reach out when Recover is available. One email. That's it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SPEC STRIP -->
+<div class="spec-strip">
+  <div class="spec-inner">
+    <div class="spec-item">
+      <div class="spec-value">BPC-157</div>
+      <div class="spec-label">Body Protection Compound</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-value">TB-500</div>
+      <div class="spec-label">Thymosin Beta-4 fragment</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-value">Subcutaneous</div>
+      <div class="spec-label">Administration</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-value">Physician Rx</div>
+      <div class="spec-label">Required</div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<section class="detail">
+  <h2>What Recover does.</h2>
+  <p>At 25, a tweaked knee resolved in days. At 40, it lingers for months. The nagging joint. The tendon that won't quiet down. The gut issue that just appeared one day and never left. Your body's repair signaling slows every year — and the things that used to fix themselves silently now demand your full attention.</p>
+  <p>BPC-157 is derived from a protective protein your stomach already produces. TB-500 is a fragment of Thymosin Beta-4, which drives cell migration to injury sites. Together, they amplify the repair signaling your body used to handle on its own.</p>
+
+  <div class="mechanism-grid">
+    <div class="mech-card">
+      <div class="num">01</div>
+      <h4>Joint + tendon repair</h4>
+      <p>Supports connective tissue recovery for joints, tendons, and ligaments under chronic or acute stress.</p>
+    </div>
+    <div class="mech-card">
+      <div class="num">02</div>
+      <h4>Gut lining restoration</h4>
+      <p>BPC-157 originates from gastric proteins. Research suggests it supports intestinal mucosal integrity and gut healing.</p>
+    </div>
+    <div class="mech-card">
+      <div class="num">03</div>
+      <h4>Inflammation response</h4>
+      <p>Preclinical models show reduced inflammatory markers and accelerated resolution of tissue damage.</p>
+    </div>
+    <div class="mech-card">
+      <div class="num">04</div>
+      <h4>Recovery speed</h4>
+      <p>TB-500 drives cell migration to injury sites, supporting faster tissue turnover and reduced downtime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <h2>How it works.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Complete your intake</h4>
+      <p>A short health questionnaire reviewed by a licensed physician. No video call required.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Physician prescribes</h4>
+      <p>Your doctor reviews your case, writes the Rx, and sends it to a licensed compounding pharmacy.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Delivered monthly</h4>
+      <p>Your protocol ships direct. Full dosing instructions, compound disclosure, and published research included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY -->
+<div class="transparency">
+  <h2>We show our work.</h2>
+  <p>Most peptide brands hide behind "proprietary blends." We think that's backwards. Every Baseline protocol comes with full disclosure.</p>
+  <ul>
+    <li>Complete compound and concentration listed</li>
+    <li>Published research linked for every molecule</li>
+    <li>Licensed physician reviews every case</li>
+    <li>State-licensed compounding pharmacy</li>
+    <li>No "proprietary blends." No hidden ingredients.</li>
+  </ul>
+</div>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2>Back to yourself.</h2>
+  <p>Join the waitlist for Baseline's Recover protocol. Physician-prescribed. Fully disclosed. Launching soon.</p>
+  <div class="form-wrap" id="bottomForm">
+    <form class="email-form" onsubmit="handleSubmit(event, 'bottomForm', 'recover')">
+      <input type="email" class="email-input" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="submit-btn">Get Early Access</button>
+    </form>
+    <div class="form-success">
+      <h4>You're on the list.</h4>
+      <p>We'll reach out when Recover is available.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Baseline · backtobaseline.health</p>
+  <p class="disclaimer">Baseline connects patients with licensed physicians and compounding pharmacies. All protocols require a physician prescription. This site is not medical advice. Individual results vary. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+</footer>
+
+<!-- Form handling via /shared/tracking.js -->
+
+</body>
+</html>
