@@ -31,7 +31,8 @@ function getUtmParams() {
     utm_campaign: params.get('utm_campaign') || '',
     utm_content: params.get('utm_content') || '',
     utm_term: params.get('utm_term') || '',
-    fbclid: params.get('fbclid') || ''
+    fbclid: params.get('fbclid') || '',
+    gclid: params.get('gclid') || ''
   };
 }
 
@@ -47,15 +48,14 @@ function submitWaitlist(email, protocol) {
   var payload = {
     email: email,
     protocol: protocol,
-    page_url: typeof window !== 'undefined' ? window.location.href : '',
-    submitted_at: new Date().toISOString(),
     source: utms.utm_source || 'direct',
     utm_source: utms.utm_source,
     utm_medium: utms.utm_medium,
     utm_campaign: utms.utm_campaign,
     utm_content: utms.utm_content,
     utm_term: utms.utm_term,
-    fbclid: utms.fbclid
+    fbclid: utms.fbclid,
+    gclid: utms.gclid
   };
 
   return fetch(SUPABASE_URL + '/rest/v1/waitlist', {
