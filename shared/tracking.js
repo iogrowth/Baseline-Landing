@@ -30,7 +30,8 @@ function getUtmParams() {
     utm_medium: params.get('utm_medium') || '',
     utm_campaign: params.get('utm_campaign') || '',
     utm_content: params.get('utm_content') || '',
-    utm_term: params.get('utm_term') || ''
+    utm_term: params.get('utm_term') || '',
+    fbclid: params.get('fbclid') || ''
   };
 }
 
@@ -46,12 +47,15 @@ function submitWaitlist(email, protocol) {
   var payload = {
     email: email,
     protocol: protocol,
+    page_url: typeof window !== 'undefined' ? window.location.href : '',
+    submitted_at: new Date().toISOString(),
     source: utms.utm_source || 'direct',
     utm_source: utms.utm_source,
     utm_medium: utms.utm_medium,
     utm_campaign: utms.utm_campaign,
     utm_content: utms.utm_content,
-    utm_term: utms.utm_term
+    utm_term: utms.utm_term,
+    fbclid: utms.fbclid
   };
 
   return fetch(SUPABASE_URL + '/rest/v1/waitlist', {
@@ -64,9 +68,6 @@ function submitWaitlist(email, protocol) {
     },
     body: JSON.stringify(payload)
   });
-
-  console.log('Waitlist payload:', payload);
-  return Promise.resolve();
 }
 
 
@@ -77,34 +78,41 @@ function handleSubmit(e, formId, protocol) {
   var wrap = document.getElementById(formId);
   var email = wrap.querySelector('.email-input').value;
 
-  submitWaitlist(email, protocol).then(function (res) {
-    if (!res.ok) return;
-    try {
-      fetch(SUPABASE_URL + '/functions/v1/send-welcome-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'apikey': SUPABASE_KEY
-        },
-        body: JSON.stringify({ email: email, protocol: protocol })
-      }).catch(function (err) {
+  submitWaitlist(email, protocol)
+    .then(function (res) {
+      if (!res.ok) {
+        console.error('Waitlist submit failed:', res.status);
+        window.alert('Something went wrong. Please try again.');
+        return;
+      }
+
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: protocol + '_waitlist' });
+      }
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', { protocol: protocol });
+      }
+
+      wrap.classList.add('submitted');
+
+      try {
+        fetch(SUPABASE_URL + '/functions/v1/send-welcome-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'apikey': SUPABASE_KEY
+          },
+          body: JSON.stringify({ email: email, protocol: protocol })
+        }).catch(function (err) {
+          console.error(err);
+        });
+      } catch (err) {
         console.error(err);
-      });
-    } catch (err) {
+      }
+    })
+    .catch(function (err) {
       console.error(err);
-    }
-  });
-
-  // Fire Meta pixel Lead event
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead', { content_name: protocol + '_waitlist' });
-  }
-
-  // Fire GA4 sign_up event
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'sign_up', { method: 'waitlist', protocol: protocol });
-  }
-
-  wrap.classList.add('submitted');
+      window.alert('Something went wrong. Please try again.');
+    });
 }
