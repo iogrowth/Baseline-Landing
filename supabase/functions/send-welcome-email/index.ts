@@ -3,7 +3,7 @@ import "@supabase/functions-js/edge-runtime.d.ts";
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const RESEND_URL = "https://api.resend.com/emails/send";
+const RESEND_URL = "https://api.resend.com/emails";
 
 const corsHeaders: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -49,18 +49,50 @@ function welcomeHtml(protocol: string): string {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 </head>
-<body style="margin:0;padding:32px 16px;background:#faf9f7;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#2A2825;">
-  <div style="max-width:520px;margin:0 auto;">
-    <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;font-size:12px;color:#999;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:28px;">BASELINE</div>
-    <h1 style="font-size:24px;font-weight:700;color:#2A2825;margin:0 0 16px;line-height:1.25;">You're on the list.</h1>
-    <p style="font-size:16px;line-height:1.5;margin:0 0 16px;color:#2A2825;">We'll email you once — when the ${p} protocol is available for prescribing. No drip sequences. No spam. Just the launch.</p>
-    <p style="font-size:16px;line-height:1.5;margin:0 0 28px;color:#2A2825;">In the meantime: every Baseline protocol comes with full compound disclosure, published dosing, and linked research. When we launch, you'll see exactly what you're getting and why.</p>
-    <hr style="border:0;border-top:1px solid #E8E4DD;margin:0 0 24px;">
-    <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;font-size:11px;color:#999;line-height:1.5;">
-      <div style="margin-bottom:8px;">Baseline · backtobaseline.health</div>
-      <div>Physician-prescribed peptide therapy. Full compound disclosure.</div>
-    </div>
-  </div>
+<body style="margin:0;padding:0;">
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;background-color:#F5F2ED;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+  <tr>
+    <td align="center" style="padding:0;">
+      <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width:520px;width:100%;margin:0 auto;background-color:#ffffff;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+        <tr>
+          <td style="padding:40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="font-family:'Courier New',Courier,monospace;font-size:12px;color:#999999;text-transform:uppercase;letter-spacing:2px;padding:0;">BASELINE</td>
+              </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="font-size:24px;font-weight:bold;color:#2A2825;padding:24px 0 0 0;line-height:1.2;">You're on the list.</td>
+              </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#555555;padding:16px 0 0 0;">We'll email you once &mdash; when the ${p} protocol is available for prescribing. No drip sequences. No spam. Just the launch.</td>
+              </tr>
+              <tr>
+                <td style="font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#555555;padding:16px 0 0 0;">In the meantime: every Baseline protocol comes with full compound disclosure, published dosing, and linked research. When we launch, you'll see exactly what you're getting and why.</td>
+              </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-collapse:collapse;margin:32px 0;">
+              <tr>
+                <td style="border-top:1px solid #E8E4DD;font-size:1px;line-height:1px;height:1px;padding:0;">&nbsp;</td>
+              </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="font-family:'Courier New',Courier,monospace;font-size:11px;color:#999999;line-height:1.5;padding:0;">Baseline &middot; backtobaseline.health</td>
+              </tr>
+              <tr>
+                <td style="font-family:'Courier New',Courier,monospace;font-size:11px;color:#999999;line-height:1.5;padding:8px 0 0 0;">Physician-prescribed peptide therapy. Full compound disclosure.</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </body>
 </html>`;
 }

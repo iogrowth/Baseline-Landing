@@ -84,7 +84,8 @@ function handleSubmit(e, formId, protocol) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + SUPABASE_KEY
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'apikey': SUPABASE_KEY
         },
         body: JSON.stringify({ email: email, protocol: protocol })
       }).catch(function (err) {
