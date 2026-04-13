@@ -5,8 +5,19 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_URL = "https://api.resend.com/emails";
 
+const ALLOWED_PROTOCOLS = new Set([
+  "growth",
+  "recover",
+  "desire",
+  "energy",
+  "glow",
+  "calm",
+  "immune",
+  "youth",
+]);
+
 const corsHeaders: Record<string, string> = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "https://backtobaseline.health",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
@@ -130,14 +141,15 @@ serve(async (req) => {
   }
 
   const email = typeof payload.email === "string" ? payload.email.trim() : "";
-  const protocol =
+  const protocolRaw =
     typeof payload.protocol === "string" ? payload.protocol.trim() : "";
+  const protocol = protocolRaw.toLowerCase();
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return jsonResponse({ error: "Valid email is required" }, 400);
   }
-  if (!protocol) {
-    return jsonResponse({ error: "protocol is required" }, 400);
+  if (!protocolRaw || !ALLOWED_PROTOCOLS.has(protocol)) {
+    return jsonResponse({ error: "Invalid protocol" }, 400);
   }
 
   const resendRes = await fetch(RESEND_URL, {
