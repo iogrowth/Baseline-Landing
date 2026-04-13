@@ -77,7 +77,23 @@ function handleSubmit(e, formId, protocol) {
   var wrap = document.getElementById(formId);
   var email = wrap.querySelector('.email-input').value;
 
-  submitWaitlist(email, protocol);
+  submitWaitlist(email, protocol).then(function (res) {
+    if (!res.ok) return;
+    try {
+      fetch(SUPABASE_URL + '/functions/v1/send-welcome-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        },
+        body: JSON.stringify({ email: email, protocol: protocol })
+      }).catch(function (err) {
+        console.error(err);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
   // Fire Meta pixel Lead event
   if (typeof fbq !== 'undefined') {
